@@ -22,27 +22,11 @@ router.post("/projects", async (req, res, next) => {
 
 //GET all projects
 
-router.post("/checkout", async (req, res, next) => {
+router.get("/projects", async (req, res, next) => {
   try {
-    let productIds = products.map(product => product.productId);
+    const allProjects = await Project.find();
 
-    const purchasedProducts = await Product.find({
-      _id: {
-        $in: productIds,
-      },
-    });
-
-    for (let i = 0; i < purchasedProducts.length; i++) {
-      if (products[i].quantity > purchasedProducts[i].quantity) {
-        res.status(401).json({
-          message: `Item ${purchasedProducts[i].title} doesn't have the requested amount`,
-        });
-      }
-    }
-
-    productIds.forEach(async product => {});
-
-    res.status(200).json(purchasedProducts);
+    res.status(200).json(allProjects);
   } catch (error) {
     console.error(error);
   }
