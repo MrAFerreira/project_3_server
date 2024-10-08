@@ -124,7 +124,7 @@ router.delete("/projects/:projectId", async (req, res, next) => {
   try {
     const { projectId } = req.params;
 
-    await Project.findOneAndDelete(projectId);
+    await Project.findByIdAndDelete(projectId);
 
     res.status(204).send();
   } catch (error) {

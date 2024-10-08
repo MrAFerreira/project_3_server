@@ -26,7 +26,7 @@ module.exports = app => {
     //control origin resource sharing
     // DDOS - Dedicated denial of service
     cors({
-      origin: [FRONTEND_URL],
+      origin: "*",
     })
   );
 
